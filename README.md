@@ -1,5 +1,9 @@
 # nodejs 스터디
 
+## 실행하기
+- npm install
+- DEBUG=myapp ./bin/www
+
 ## ui 웹 인터페이스 구성
 - request, response
 - mysql 설치 crud (하이디 sql)
