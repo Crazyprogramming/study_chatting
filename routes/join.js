@@ -19,7 +19,7 @@ connection.connect(function(err) {
     }
 });
 
-// router
+// routerㅇ
 router.get('/', function(req, res, next) {
 	res.render('join/index', {
 		namespace : "join",
