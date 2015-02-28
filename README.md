@@ -1,8 +1,9 @@
 # nodejs 스터디
 
 ## 실행하기
-- npm install
-- DEBUG=myapp ./bin/www
+- `npm install`
+- 윈도우명령어 `set DEBUG=myapp & node .\bin\www`
+- 맥명령어 `DEBUG=myapp ./bin/www`
 
 ## ui 웹 인터페이스 구성
 - request, response
