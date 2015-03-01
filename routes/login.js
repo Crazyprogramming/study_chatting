@@ -1,29 +1,32 @@
 var express = require('express');
+var db = require('../AppCode/DbController.js');
 var router = express.Router();
 
 router.get('/', function(req, res, next){
 	if(req.cookies.auth){
 		res.redirect('/login/success');
 	}else{
-		res.render('login', {
+		res.render('./login/index', {
 			namespace : "login",
-			title : 'nodejs - 로그',
+			title : 'nodejs - 로그인',
 			message : "로그인해주세요." 
 		});		
-	}
+    }
 });
 
 router.post('/', function(req, res, next){
 	var email = req.param("email");
-	var pw    = req.param("password")
+    var pw = req.param("password");
 	
-	// console.log('login - post : ', email, pw);
-	// if(email == "ace4gi@naver.com" && pw == '1234'){
-		// res.cookie('auth', true);
-		// res.redirect('/login/success');
-	// }else{
-		// res.redirect('/login/fail');
-	// }
+    db.doLogin(email, pw, function (result, err) {
+        if (err || !result) {
+            res.redirect('/login/fail');
+        }
+        else {
+            res.cookie('auth', true);
+            res.redirect('/login/success');
+        }
+    });
 });
 
 router.get('/success', function(req, res, next){
