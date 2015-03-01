@@ -37,16 +37,16 @@
         
         connection.query(query, data, function (err, result) {
             if (compliteFunction != null) {
-                if (err) {
+                if (err || result.length == 0) {
                     compliteFunction(false, err);
                 }
                 else {
                     compliteFunction(true);
                 }
             }
+            
+            DbDisconnect(connection);
         });
-
-        DbDisconnect(connection);
     }
 
     this.insertMember = function (email, password, nickname, compliteFunction) {
@@ -68,8 +68,8 @@
                     compliteFunction(true);
                 }
             }
+            
+            DbDisconnect(connection);
         });
-        
-        DbDisconnect(connection);
     }
 }
