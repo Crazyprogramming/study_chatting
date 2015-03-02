@@ -4,12 +4,15 @@ var room = require('../AppCode/Room.js');
 var roomCollection = require('../AppCode/RoomCollection.js');
 
 router.get('/', function (req, res, next) {
-    
+    var test;
     for (var i = 0; i < 10; i++) {
         var newRoom = new room('testRoom' + i);
         newRoom.AddMember('member' + i);
         roomCollection.AddRoom(newRoom);
+        test = newRoom.RoomID;
     }
+    
+    roomCollection.GetRoom(test).RemoveMember('member9');
     
     var list = roomCollection.GetRoomListJson();
 

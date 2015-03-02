@@ -2,25 +2,41 @@
 
 module.exports = new function () {
     var roomList = [];
-    this.length = 0;
+    this.RoomCount = 0;
 
     this.AddRoom = function (room) {
-        roomList.push(room);
-        this.length = roomList.length;
-    }
-    
-    this.RemoveRoom = function (room) {
+        room.CallBack_EmptyRoom = this.RemoveRoom;
+        var hasArray = roomList.filter(function (e, i, a) {
+            return e.RoomID == room.RoomID;
+        });
         
-        for (var i = 0; i < roomList.length; i++) {
-            if (roomList[i].RoomID == room.RoomID) {
-                delete roomList[i];
-                this.length = --roomList;
-            }
+        if (hasArray.length == 0) {
+            roomList.push(room);
+            this.RoomCount = roomList.length;
         }
     }
     
-    this.GetRoom = function (idx) {
-        return roomList[idx];
+    this.RemoveRoom = function (room) {
+        roomList.forEach(function (e, i, a) {
+
+            if (room.RoomID == e.RoomID) {
+                delete roomList[i];
+                this.RoomCount = --roomList.length;
+                return false;
+            }
+
+            return true;
+        });
+    }
+    
+    this.GetRoom = function (key) {
+        var itemList = roomList.filter(function (e, i, a) { return e.RoomID == key; });
+        if (itemList.length == 0) {
+            return null;
+        }
+        else {
+            return itemList[0];
+        }
     }
     
     this.GetRoomList = function () {
@@ -29,7 +45,7 @@ module.exports = new function () {
 
     this.GetRoomListJson = function () {
         var list = [];
-        
+
         for (var i = 0; i < roomList.length; i++) {
             var json = { roomName: roomList[i].RoomName, memberCount: roomList[i].MemberCount };
             list.push(json);

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>NodeJsStudy</Name>
+    <RootNamespace>NodeJsStudy</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>5f4bc1f4-8683-46ae-afc2-8d92c7bf36ae</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>bin\www</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <NodejsPort>8000</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="bin\www" />
+    <Content Include="package.json" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="public\stylesheets\bootstrap\bootstrap-theme.css" />
+    <Content Include="public\stylesheets\bootstrap\bootstrap-theme.css.map" />
+    <Content Include="public\stylesheets\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="public\stylesheets\bootstrap\bootstrap.css" />
+    <Content Include="public\stylesheets\bootstrap\bootstrap.css.map" />
+    <Content Include="public\stylesheets\bootstrap\bootstrap.min.css" />
+    <Content Include="public\stylesheets\ui.css" />
+    <Content Include="README.md" />
+    <Content Include="views\chatting_step1.hbs" />
+    <Content Include="views\chatting_step2.hbs" />
+    <Content Include="views\error.hbs" />
+    <Content Include="views\index.hbs" />
+    <Content Include="views\join\index.hbs" />
+    <Content Include="views\join\success.hbs" />
+    <Content Include="views\layouts\default.hbs" />
+    <Content Include="views\login\fail.hbs" />
+    <Content Include="views\login\index.hbs" />
+    <Content Include="views\login\success.hbs" />
+    <Content Include="views\partials\gnb.hbs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AppCode\" />
+    <Folder Include="bin\" />
+    <Folder Include="public\" />
+    <Folder Include="public\fonts\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\javascripts\bootstrap\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="public\stylesheets\bootstrap\" />
+    <Folder Include="routes\" />
+    <Folder Include="views\" />
+    <Folder Include="views\join\" />
+    <Folder Include="views\layouts\" />
+    <Folder Include="views\login\" />
+    <Folder Include="views\partials\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app.js" />
+    <Compile Include="AppCode\DbController.js" />
+    <Compile Include="AppCode\Member.js" />
+    <Compile Include="AppCode\Room.js" />
+    <Compile Include="AppCode\RoomCollection.js" />
+    <Compile Include="public\javascripts\bootstrap\bootstrap.js" />
+    <Compile Include="public\javascripts\bootstrap\bootstrap.min.js" />
+    <Compile Include="public\javascripts\bootstrap\npm.js" />
+    <Compile Include="routes\chatting.js" />
+    <Compile Include="routes\index.js" />
+    <Compile Include="routes\join.js" />
+    <Compile Include="routes\login.js" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
