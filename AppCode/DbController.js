@@ -7,7 +7,7 @@
             port : 3306,
             user : 'root',
             password : 'root',
-            database : 'mychat_db'
+            database : 'chat_study'
         });
 
         connection.connect(function (err) {
@@ -66,6 +66,32 @@
                 }
                 else {
                     compliteFunction(true);
+                }
+            }
+            
+            DbDisconnect(connection);
+        });
+    }
+
+    this.CheckRoomName = function (roomname, compliteFunction) {
+        var connection = DbConnect();
+        
+        var query = 'select count(*) as count from rooms where roomname = ?';
+        var data = [roomname];
+        
+        connection.query(query, data, function (err, result) {
+            if (compliteFunction != null) {
+                if (err) {
+                    compliteFunction(false, err);
+                }
+                else {
+                    if (result[0].count == 0) {
+                        compliteFunction(true);
+                    }
+                    else {
+                        compliteFunction(false);
+                    }
+                    
                 }
             }
             
