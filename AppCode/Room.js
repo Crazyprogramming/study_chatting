@@ -31,7 +31,7 @@ module.exports = function (roomName) {
     }
 
     this.RemoveMember = function (userinfo) {
-        
+
         memberList.forEach(function (e, i, a) {
             if (e.email == userinfo.email) {
                 delete memberList[i];

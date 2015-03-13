@@ -7,16 +7,23 @@
         socket.on('InitMember', function (data) {
             var room = rooms.GetRoom(data.roomID);
             var member = room.GetMember(data.midx);
+
             this.room = room;
             this.member = member;
             member.socket = this;
         });
 
         socket.on('SenMessage', function (msg) {
+            var room = this.room;
             var members = this.room.GetMemgerList();
             var sendername = this.member.nickname;
             members.forEach(function (e, i, a) {
-                e.socket.emit('ReciveMessage', {msg: msg, sender: sendername});
+                if (e.socket.connected) {
+                    e.socket.emit('ReciveMessage', { msg: msg, sender: sendername });
+                }
+                else {
+                    room.RemoveMember(e);
+                }
             });
         });
     });
