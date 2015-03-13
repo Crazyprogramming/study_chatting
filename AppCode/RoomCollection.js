@@ -29,6 +29,24 @@ module.exports = new function () {
         });
     }
     
+    this.ExistRoom = function (roomname) {
+        
+        if (roomList.length == 0) {
+            return false;
+        }
+
+        var list = roomList.filter(function (e, i, a) {
+            return e.RoomName == roomname;
+        });
+
+        if (list.length == 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
     this.GetRoom = function (key) {
         var itemList = roomList.filter(function (e, i, a) { return e.RoomID == key; });
         if (itemList.length == 0) {
@@ -47,7 +65,11 @@ module.exports = new function () {
         var list = [];
 
         for (var i = 0; i < roomList.length; i++) {
-            var json = { roomName: roomList[i].RoomName, memberCount: roomList[i].MemberCount };
+            var json = {
+                roomID : roomList[i].RoomID, 
+                roomName: roomList[i].RoomName, 
+                memberCount: roomList[i].MemberCount
+            };
             list.push(json);
         }
 

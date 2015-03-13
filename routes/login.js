@@ -1,9 +1,10 @@
 var express = require('express');
 var db = require('../AppCode/DbController.js');
+var membermodule = require('../Appcode/Member.js');
 var router = express.Router();
 
 router.get('/', function(req, res, next){
-	if(req.cookies.auth){
+	if(req.session.userinfo){
 		res.redirect('/login/success');
 	}else{
 		res.render('./login/index', {
@@ -23,8 +24,21 @@ router.post('/', function(req, res, next){
             res.redirect('/login/fail');
         }
         else {
-            res.cookie('auth', true);
-            res.redirect('/login/success');
+            db.GetMemberInfo(email, function (result) {
+                
+                if (result == null || result.length == 0) {
+                    res.redirect('/login/fail');
+                }
+                else {
+                    var memberinfo = result[0];
+                    var member = new membermodule();
+                    member.idx = memberinfo.idx;
+                    member.email = memberinfo.email;
+                    member.nickname = memberinfo.nickname;
+                    req.session.userinfo = member;
+                    res.redirect('/login/success');   
+                }
+            });
         }
     });
 });

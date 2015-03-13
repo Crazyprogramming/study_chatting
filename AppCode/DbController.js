@@ -98,4 +98,24 @@
             DbDisconnect(connection);
         });
     }
+
+    this.GetMemberInfo = function (usermail, compliteFunction) {
+        var connection = DbConnect();
+        
+        var query = 'select *  from userinfo where email = ?';
+        var data = [usermail];
+        
+        connection.query(query, data, function (err, result) {
+            if (compliteFunction != null) {
+                if (err) {
+                    compliteFunction(null, err);
+                }
+                else {
+                    compliteFunction(result);
+                }
+            }
+            
+            DbDisconnect(connection);
+        });
+    }
 }

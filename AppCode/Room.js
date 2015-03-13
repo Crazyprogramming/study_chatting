@@ -17,25 +17,23 @@ module.exports = function (roomName) {
                 getUid() + getUid() + getUid()).toUpperCase();
     }
 
-    this.AddMember = function (item) {
+    this.AddMember = function (userinfo) {
         
 
         var hasArray = memberList.filter(function (e, i, a) {
-            return e.email == item;
+            return e.email == userinfo.email;
         });
         
         if (hasArray.length == 0) {
-            var newMember = new member();
-            newMember.email = item;
-            memberList.push(newMember);
+            memberList.push(userinfo);
             this.MemberCount = memberList.length;
         }
     }
 
-    this.RemoveMember = function (item) {
+    this.RemoveMember = function (userinfo) {
         
         memberList.forEach(function (e, i, a) {
-            if (e.email == item) {
+            if (e.email == userinfo.email) {
                 delete memberList[i];
                 this.MemberCount = --memberList.length;
                 return false;
