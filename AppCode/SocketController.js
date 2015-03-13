@@ -12,6 +12,16 @@
             this.member = member;
             member.socket = this;
         });
+        
+        socket.on('OutMemver', function (data) {
+            var room = rooms.GetRoom(data.roomID);
+            if (room == null)
+                return;
+            var member = room.GetMember(data.midx);
+            if (member == null)
+                return;
+            room.RemoveMember(member);
+        });
 
         socket.on('SenMessage', function (msg) {
             var room = this.room;

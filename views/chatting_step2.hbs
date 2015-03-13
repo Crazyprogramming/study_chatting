@@ -11,11 +11,12 @@
     <input id="ctr_msg" type="text" class="form-control" placeholder="Search for...">
     <span class="input-group-btn">
         <button id="ctr_send" class="btn btn-default" type="button">입력</button>
-        <button class="btn btn-default" type="button">방나가기</button>
+        <button id="ctr_leave" class="btn btn-default" type="button">방나가기</button>
     </span>
 </div>
 
 <script src="/Js/socket.io.js"></script>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script>
     var _roomID = '{{roomID}}';
     var _midx = '{{midx}}';
@@ -36,8 +37,13 @@
         }
     }
 
-    document.getElementById('ctr_send').onkeypress = function (e) {
+    document.getElementById('ctr_send').onclick = function (e) {
         SendMessage();
+    }
+
+    document.getElementById('ctr_leave').onclick = function (e) {
+        LeaveRoom();
+        location.href = '/chatting';
     }
 
     function SendMessage() {
@@ -51,4 +57,12 @@
 
         ctr_msg.value = '';
     }
+
+    function LeaveRoom() {
+        socket.emit('OutMemver', { roomID: _roomID, midx: _midx });
+    }
 </script>
+
+<!--<script language="javascript" event="onunload" for="window">
+    LeaveRoom();
+</script>--> 
