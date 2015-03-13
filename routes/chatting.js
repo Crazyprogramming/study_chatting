@@ -45,7 +45,9 @@ router.post('/', function (req, res, next) {
 router.get('/room', function (req, res, next) {
     res.render('chatting_step2', {
         namespace : "chattingStep2",
-        title: 'nodejs - 채팅방입장 채팅하기'
+        title: 'nodejs - 채팅방입장 채팅하기',
+        roomID: req.param("roomID"),
+        midx: req.session.userinfo.idx
     });
 });
 

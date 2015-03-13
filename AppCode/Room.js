@@ -46,4 +46,19 @@ module.exports = function (roomName) {
             this.CallBack_EmptyRoom(this);
         }
     }
+
+    this.GetMemgerList = function () {
+        return memberList;
+    }
+
+    this.GetMember = function (midx) {
+        var idx = parseInt(midx);
+        var list = memberList.filter(function (e, i, a) { return e.idx == idx; });
+        if (list == null || list.length == 0) {
+            return null;
+        }
+        else {
+            return list[0];
+        }
+    }
 }

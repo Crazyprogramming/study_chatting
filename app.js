@@ -5,7 +5,6 @@ var logger = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var io = require('socket.io').listen(express);
 
 var app = express();
 
@@ -22,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'secret key', key: 'chatstudy', cookie: { maxAge: 60 * 1000 } }));
+app.use(session({ secret: 'secret key', key: 'chatstudy', cookie: { maxAge: 60 * 60 * 1000 } }));
 
 // routes
 app.use('/',         require('./routes/index'));
@@ -60,6 +59,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;
