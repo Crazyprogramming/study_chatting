@@ -7,7 +7,7 @@
             port : 3306,
             user : 'root',
             password : 'root',
-            database : 'mychat_db'
+            database : 'chat_study'
         });
 
         connection.connect(function (err) {
@@ -37,16 +37,16 @@
         
         connection.query(query, data, function (err, result) {
             if (compliteFunction != null) {
-                if (err) {
+                if (err || result.length == 0) {
                     compliteFunction(false, err);
                 }
                 else {
                     compliteFunction(true);
                 }
             }
+            
+            DbDisconnect(connection);
         });
-
-        DbDisconnect(connection);
     }
 
     this.insertMember = function (email, password, nickname, compliteFunction) {
@@ -68,8 +68,34 @@
                     compliteFunction(true);
                 }
             }
+            
+            DbDisconnect(connection);
         });
+    }
+
+    this.CheckRoomName = function (roomname, compliteFunction) {
+        var connection = DbConnect();
         
-        DbDisconnect(connection);
+        var query = 'select count(*) as count from rooms where roomname = ?';
+        var data = [roomname];
+        
+        connection.query(query, data, function (err, result) {
+            if (compliteFunction != null) {
+                if (err) {
+                    compliteFunction(false, err);
+                }
+                else {
+                    if (result[0].count == 0) {
+                        compliteFunction(true);
+                    }
+                    else {
+                        compliteFunction(false);
+                    }
+                    
+                }
+            }
+            
+            DbDisconnect(connection);
+        });
     }
 }

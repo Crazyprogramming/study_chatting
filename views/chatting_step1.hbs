@@ -2,14 +2,16 @@
     <h1>{{title}}</h1>
 </div>
 
+<form method="post">
+    <input type="text" class="form-control" id="roomname" name="roomname" placeholder="Room Name" style="width: 180px; float: left; margin-right: 10px;">
+    <button type="submit" class="btn btn-default" style="float: left">Create Room</button>
+</form>
+
 <div class="list-group">
-    <!-- a class="active" 로 활성화 -->
+    {{#each rooms}}
     <a href="/chatting/room" class="list-group-item">
-        <span class="badge">14</span>
-        Cras justo odio1
+        <span class="badge">{{ memberCount }}</span>
+        {{ roomName }}
     </a>
-    <a href="/chatting/room" class="list-group-item">
-        <span class="badge">14</span>
-        Cras justo odio2
-    </a>
+    {{/each}}
 </div>
