@@ -34,7 +34,7 @@ router.post('/', function (req, res, next) {
     }
     else {
         var newroom = new room(roomname);
-        newroom.AddMember(req.session.userinfo);
+        //newroom.AddMember(req.session.userinfo);
         roomCollection.AddRoom(newroom);
 
         res.redirect('/chatting/room?roomID=' + newroom.RoomID);
@@ -43,10 +43,15 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/room', function (req, res, next) {
+    var roomID = req.param("roomID");
+
+    var room = roomCollection.GetRoom(roomID);
+    room.AddMember(req.session.userinfo);
+
     res.render('chatting_step2', {
         namespace : "chattingStep2",
         title: 'nodejs - 채팅방입장 채팅하기',
-        roomID: req.param("roomID"),
+        roomID: roomID,
         midx: req.session.userinfo.idx
     });
 });
